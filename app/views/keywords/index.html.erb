@@ -1,5 +1,0 @@
-<h1> list of topics </h1> 
-<%= form_for(@user_keyword) do |f| %>
-<%= f.collection_check_boxes :keyword_id, Keyword.all, :id, :name %>
-<%= f.submit %>
-<%end%>
