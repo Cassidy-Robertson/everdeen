@@ -3,7 +3,7 @@ require 'csv'
 namespace :csv do
 
   desc "Import CSV Data"
-  task :import_stuff => :environment do
+  task :import_politician_data => :environment do
 
     csv_file_path = 'db/legislators.csv'
 
@@ -17,7 +17,8 @@ namespace :csv do
         :district => row[8],
         :website => row[13],
         :twitter_handle => row[21],
-        :bioguide_id => row[16]
+        :bioguide_id => row[16],
+        :in_office => row[9]
       })
       puts "Row added!"
     end

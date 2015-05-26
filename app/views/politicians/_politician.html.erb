@@ -1,3 +1,9 @@
-<li>
-  <%= politician.first_name %> <%= politician.last_name %>: <%= politician.title %> <%= politician.state %>
-</li>
+<div>
+<a href="/politicians/<%= politician.id %>">
+<img src="/assets/<%=politician.bioguide_id%>.jpg" />
+</a>
+<h4>
+  <%= politician.title %> <%= politician.first_name%> <%= politician.last_name%>
+</h4> 
+<%= politician.party %>
+</div>
