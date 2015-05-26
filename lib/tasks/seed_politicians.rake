@@ -16,7 +16,8 @@ namespace :csv do
         :state => row[7],
         :district => row[8],
         :website => row[13],
-        :twitter_handle => row[21]
+        :twitter_handle => row[21],
+        :bioguide_id => row[16]
       })
       puts "Row added!"
     end

@@ -1,0 +1,15 @@
+<h1>
+<%= @politician.title %>
+<%= @politician.first_name%> <%= @politician.last_name%>
+</h1>
+
+<img src="/assets/<%=@politician.bioguide_id%>.jpg" />
+
+<div>
+Party: <%= @politician.party %><br>
+State: <%= @politician.state %><br>
+District: <%= @politician.district %><br>
+<a href="<%= @politician.website %>">Go to your reps website</a><br>
+<a href="https://www.twitter.com/<%= @politician.twitter_handle %>">Follow your rep on twitter</a>
+</div>
+
