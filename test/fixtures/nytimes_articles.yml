@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  politician_id: 
+  headline: MyText
+  url: MyText
+
+two:
+  politician_id: 
+  headline: MyText
+  url: MyText

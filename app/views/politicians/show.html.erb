@@ -3,13 +3,27 @@
 <%= @politician.first_name%> <%= @politician.last_name%>
 </h1>
 
-<img src="/assets/<%=@politician.bioguide_id%>.jpg" />
+<div class="container col-xs-4">
+  <img src="/assets/<%=@politician.bioguide_id%>.jpg" class="img-responsive"/>
+  Party: <%= @politician.party %><br>
+  State: <%= @politician.state %><br>
+  District: <%= @politician.district %><br>
+  <a href="<%= @politician.website %>">Go to your reps website</a><br>
+  <a href="https://www.twitter.com/<%= @politician.twitter_handle %>">Follow your rep on twitter</a>
+</div>
 
-<div>
-Party: <%= @politician.party %><br>
-State: <%= @politician.state %><br>
-District: <%= @politician.district %><br>
-<a href="<%= @politician.website %>">Go to your reps website</a><br>
-<a href="https://www.twitter.com/<%= @politician.twitter_handle %>">Follow your rep on twitter</a>
+<% if (@politician.twitter_handle == nil || @politician.twitter_handle == "") %>
+  <% @politician.twitter_handle = 'USGovNews' %>
+<% end %>
+
+<a class="twitter-timeline" href="https://twitter.com/<%= @politician.twitter_handle %>" data-widget-id="603583754796462081"data-screen-name="<%= @politician.twitter_handle %>">Tweets by @<%= @politician.twitter_handle %></a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+<div id="articles" class="container col-xs-4">
+  <h4>Recent NYTimes Headlines!</h4>
+  <% @articles.each do |article| %>
+  <p> <%= link_to article[:headline], article[:url] %></p>
+  <% end %>
 </div>
 
