@@ -33,6 +33,6 @@ class Politician < ActiveRecord::Base
 
     end
 
-    NytimesArticle.find_by(politician_id: self.id)
+    NytimesArticle.where(politician_id: self.id)
   end 
 end

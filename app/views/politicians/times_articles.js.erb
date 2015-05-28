@@ -1,0 +1,4 @@
+<% @articles.each do |article| %>
+debugger;
+$('#articles').append("<li> <%= j link_to article.headline, article.url %> </li>");
+<% end %>

@@ -6,10 +6,23 @@ class PoliticiansController < ApplicationController
 
   def show
     @politician = Politician.find(params[:id])
+    # if @politician.nytimes_articles.empty?
+    #   @articles = @politician.get_articles
+    # else
+    #   @articles = @politician.nytimes_articles
+    # end
+  end
+
+  def times_articles
+    @politician = Politician.find(params[:politician_id])
     if @politician.nytimes_articles.empty?
       @articles = @politician.get_articles
     else
       @articles = @politician.nytimes_articles
+    end
+    respond_to do |format|
+      format.html {render action: "show"}
+      format.js
     end
   end
   

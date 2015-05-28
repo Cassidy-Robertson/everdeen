@@ -20,10 +20,10 @@
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 
 
-<div id="articles" class="container col-xs-4">
+<div class="container col-xs-4 politician_id" id = "<%= @politician.id %>">
   <h4>Recent NYTimes Headlines!</h4>
-  <% @articles.each do |article| %>
-  <p> <%= link_to article[:headline], article[:url] %></p>
-  <% end %>
+  <ul id = "articles">
+    
+  </ul>
 </div>
 
