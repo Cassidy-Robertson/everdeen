@@ -15,9 +15,10 @@ $(document).ready(function(){
 
     function showPosition(position) {
       $.get("http://maps.googleapis.com/maps/api/geocode/json?latlng="+position.coords.latitude+","+position.coords.longitude+"&sensor=true", function(data){
-
+        // debugger;
         data["results"][0]["address_components"].forEach(function(add_comp){
-          if(add_comp["types"][0]="postal_code"){
+          // debugger;
+          if(add_comp["types"][0]==="postal_code"){
             zipcode = add_comp["long_name"];
           }
         });
