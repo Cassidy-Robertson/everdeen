@@ -6,11 +6,25 @@ class PoliticiansController < ApplicationController
 
   def show
     @politician = Politician.find(params[:id])
+
     if @politician.nytimes_articles.empty?
       @articles = @politician.get_articles
     else
       @articles = @politician.nytimes_articles
     end
+
+    if @politician.indiv_contributors.empty?
+      @indiv_contributors = @politician.get_top_indiv_contributors("candContrib",2014)
+    else
+      @indiv_contributors = @politician.indiv_contributors
+    end
+
+    if @politician.indus_contributors.empty?
+      @indus_contributors = @politician.get_top_indus_contributors("candIndustry",2014)
+    else
+      @indus_contributors = @politician.indus_contributors
+    end
+
   end
   
   def findyourreps
@@ -19,11 +33,6 @@ class PoliticiansController < ApplicationController
     state = @district.state
     @politicians = Politician.where(title: "Sen").where(state: state).where(in_office: true)
     @politicians+=(Politician.where(district: district_num).where(state: state).where(in_office: true))
-    # binding.pry
-    # redirect_to findyourreps_path
   end
 
-  # def viewyourreps
-
-  # end
 end

@@ -18,7 +18,8 @@ namespace :csv do
         :website => row[13],
         :twitter_handle => row[21],
         :bioguide_id => row[16],
-        :in_office => row[9]
+        :in_office => row[9],
+        :crpid => row[20]
       })
       puts "Row added!"
     end

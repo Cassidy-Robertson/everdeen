@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150527185541) do
+ActiveRecord::Schema.define(version: 20150528193629) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,32 @@ ActiveRecord::Schema.define(version: 20150527185541) do
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
+
+  create_table "indiv_contributors", force: :cascade do |t|
+    t.string   "organization_name"
+    t.integer  "total"
+    t.integer  "pacs"
+    t.integer  "indivs"
+    t.integer  "year"
+    t.integer  "politician_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "indiv_contributors", ["politician_id"], name: "index_indiv_contributors_on_politician_id", using: :btree
+
+  create_table "indus_contributors", force: :cascade do |t|
+    t.string   "industry_name"
+    t.integer  "total"
+    t.integer  "pacs"
+    t.integer  "indivs"
+    t.integer  "year"
+    t.integer  "politician_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "indus_contributors", ["politician_id"], name: "index_indus_contributors_on_politician_id", using: :btree
 
   create_table "keywords", force: :cascade do |t|
     t.string   "name"
@@ -53,6 +79,7 @@ ActiveRecord::Schema.define(version: 20150527185541) do
     t.datetime "updated_at",     null: false
     t.string   "bioguide_id"
     t.boolean  "in_office"
+    t.string   "crpid"
   end
 
   create_table "user_keywords", force: :cascade do |t|
@@ -72,6 +99,8 @@ ActiveRecord::Schema.define(version: 20150527185541) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "indiv_contributors", "politicians"
+  add_foreign_key "indus_contributors", "politicians"
   add_foreign_key "nytimes_articles", "politicians"
   add_foreign_key "user_keywords", "keywords"
   add_foreign_key "user_keywords", "users"

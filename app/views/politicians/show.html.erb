@@ -27,3 +27,29 @@
   <% end %>
 </div>
 
+<div id="contributions">
+  <h4>Contributions Summary</h4>
+  <table>
+    <th>Organization</th>
+    <th>Amount ($)</th>
+      <% @indiv_contributors.each do |indiv_contributor| %>
+        <tr>
+          <td><%= indiv_contributor.organization_name %></td>
+          <td><%= indiv_contributor.total %></td>
+        </tr>
+      <% end %>
+  </table>
+
+  <table>
+    <th>Industry</th>
+    <th>Amount ($)</th>
+      <% @indus_contributors.each do |indus_contributor| %>
+        <tr>
+          <td><%= indus_contributor.industry_name %></td>
+          <td><%= indus_contributor.total %></td>
+        </tr>
+      <% end %>
+  </table>
+  
+</div>
+

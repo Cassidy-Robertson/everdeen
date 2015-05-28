@@ -1,5 +1,7 @@
 class Politician < ActiveRecord::Base
   has_many :nytimes_articles
+  has_many :indiv_contributors
+  has_many :indus_contributors
 
   def get_articles
     nytimes_base_uri = "http://api.nytimes.com/svc/search/v2/articlesearch.json?q="
@@ -35,4 +37,32 @@ class Politician < ActiveRecord::Base
 
     NytimesArticle.find_by(politician_id: self.id)
   end 
+
+  def get_top_indiv_contributors(method, year)
+    open_secrets_base_uri = "http://www.opensecrets.org/api/?method="
+    api_key = ENV['OPENSECRETS_DEVELOPER_KEY']
+
+    uri = URI(open_secrets_base_uri+method+"&cid="+self.crpid+"&cycle=#{year}&output=json&apikey="+api_key)
+    result = Net::HTTP.get(uri)
+
+    JSON.load(result)["response"]["contributors"]["contributor"].each do |contributor_hash|
+      IndivContributor.create(organization_name: contributor_hash["@attributes"]["org_name"], total: contributor_hash["@attributes"]["total"].to_i, pacs: contributor_hash["@attributes"]["pacs"].to_i, indivs: contributor_hash["@attributes"]["indivs"].to_i, year: year, politician_id: self.id)
+    end
+    
+    IndivContributor.where(politician_id: self.id)
+  end
+
+  def get_top_indus_contributors(method, year)
+    open_secrets_base_uri = "http://www.opensecrets.org/api/?method="
+    api_key = ENV['OPENSECRETS_DEVELOPER_KEY']
+
+    uri = URI(open_secrets_base_uri+method+"&cid="+self.crpid+"&cycle=#{year}&output=json&apikey="+api_key)
+    result = Net::HTTP.get(uri)
+
+    JSON.load(result)["response"]["industries"]["industry"].each do |contributor_hash|
+      IndusContributor.create(industry_name: contributor_hash["@attributes"]["industry_name"], total: contributor_hash["@attributes"]["total"].to_i, pacs: contributor_hash["@attributes"]["pacs"].to_i, indivs: contributor_hash["@attributes"]["indivs"].to_i, year: year, politician_id: self.id)
+    end
+    
+    IndusContributor.where(politician_id: self.id)
+  end
 end
