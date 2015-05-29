@@ -18,6 +18,10 @@ class PoliticiansController < ApplicationController
     else
       @indus_contributors = @politician.indus_contributors
     end
+
+    politician_name = @politician.twitter_handle
+    @politician.get_mentions(politician_name)
+    @get_mentions = @politician.get_mentions(politician_name)
   end
 
   def times_articles
@@ -35,11 +39,13 @@ class PoliticiansController < ApplicationController
   end
   
   def findyourreps
-    @district = District.find_by(zipcode: params["zipcode"])
-    district_num = @district.district_num
-    state = @district.state
+    @district = District.where(zipcode: params["zipcode"])
+    state = @district.first.state
     @politicians = Politician.where(title: "Sen").where(state: state).where(in_office: true)
-    @politicians+=(Politician.where(district: district_num).where(state: state).where(in_office: true))
+    @district.each do |district|
+      district_num = district.district_num
+      @politicians+=(Politician.where(district: district_num).where(state: state).where(in_office: true))
+    end
   end
 
 end

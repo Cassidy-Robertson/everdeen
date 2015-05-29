@@ -3,6 +3,26 @@ class Politician < ActiveRecord::Base
   has_many :indiv_contributors
   has_many :indus_contributors
 
+  def get_mentions(politician_name)
+    # binding.pry
+    results = twitter_client.search(politician_name,count:10)
+    tweets = []
+    results.attrs[:statuses].each_with_index do |tweet,i|
+      tweets << tweet[:text]
+      break if i == 10
+    end
+    tweets
+  end
+
+  def twitter_client
+    Twitter::REST::Client.new do |config|
+      config.consumer_key        = ENV['TWITTER_CONSUMER_KEY']
+      config.consumer_secret     = ENV['TWITTER_CONSUMER_SECRET']
+      config.access_token        = ENV['TWITTER_ACCESS_TOKEN']
+      config.access_token_secret = ENV['TWITTER_ACCESS_TOKEN_SECRET']
+    end
+  end
+
   def get_articles
     nytimes_base_uri = "http://api.nytimes.com/svc/search/v2/articlesearch.json?q="
     api_key = ENV['NYTIMES_DEVELOPER_KEY']
