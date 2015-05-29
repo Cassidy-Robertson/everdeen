@@ -1,13 +1,101 @@
-<h1>
+<!-- NAVBAR
+============================== -->
+<div class="navbar navbar-default navbar__initial navbar-fixed-top scrollspy_menu" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+<!--         <a class="navbar-brand" href="#welcome">Wolfram 2.2</a> -->
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="fullpage__nav nav navbar-nav navbar-right">
+        <li><a href="#welcome">Welcome</a></li>
+        <li><a href="#recent"> Recent Articles</a></li>
+        <li><a href="#campaign">Campaign Contributions</a></li>
+        <li><a href="#twitter">Twitter</a></li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</div>
+
+<!-- SIDEBAR
+============================== -->
+
+<!-- Sidebar button open -->
+<div class="hidden sidebar__btn sidebar__btn_open">
+  <span class="sidebar-btn__caption">Menu</span> 
+  <span class="oi oi-menu sidebar-btn__icon sidebar-btn-icon__unhover " title="Open menu" aria-hidden="true"></span>
+  <span class="oi oi-arrow-left sidebar-btn__icon sidebar-btn-icon__hover" title="Open menu" aria-hidden="true"></span>
+</div>
+
+<!-- Sidebar menu -->
+<div class="sidebar__menu sidebar__menu_hidden scrollspy_menu">
+
+  <!-- Sidebar button close -->
+  <div class="sidebar__btn sidebar__btn_close">
+    <span class="sidebar-btn__caption">Menu</span> 
+    <span class="oi oi-menu sidebar-btn__icon sidebar-btn-icon__unhover " title="Close menu" aria-hidden="true"></span>
+    <span class="oi oi-arrow-right sidebar-btn__icon sidebar-btn-icon__hover" title="Close menu" aria-hidden="true"></span>
+  </div>
+
+  <!-- Sidebar brand name -->
+  <div class="sidebar-menu__brand">Wolfram 2.2</div>
+
+  <!-- Sidebar links -->
+  <ul class="fullpage__nav sidebar-menu__ul nav">
+    <li><a href="#welcome">Welcome</a></li>
+    <li><a href="#recent"> Recent Articles</a></li>
+    <li><a href="#campaign">Campaign Contributions</a></li>
+    <li><a href="#twitter">Twitter</a></li>
+  </ul>
+
+</div> <!-- / .sidebar-menu__ul -->
+
+
+<!-- WELCOME
+============================== -->
+<div class="welcome_classic" id="welcome">
+  <div class="welcome-classic__inner">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+
+          <!-- Heading -->
+          <div class = "pad">
+          </div>
+          <div class = "pad">
+          <img src="/assets/<%=@politician.bioguide_id%>.jpg" class="img-responsive col-xs-4 offset-4"/>
+          <h1 class="heading heading_lg">
+            <%= @politician.title %> <span class="text-primary"><%= @politician.first_name%> <%= @politician.last_name%></span>
+          </h1>
+
+          <!-- Sub heading -->
+          <p class="heading__sub">
+            Party: <%= @politician.party %><br>
+            State: <%= @politician.state %><br>
+            District: <%= @politician.district %>
+          </p>
+          </div>
+        </div>
+      </div> <!-- / .row -->
+    </div> <!-- / .container -->
+  </div> <!-- / .classic-welcome__inner -->
+</div> <!-- / .welcome_classic -->
+
+<!-- <h1>
 <%= @politician.title %>
 <%= @politician.first_name%> <%= @politician.last_name%>
-</h1>
+</h1> -->
+
 
 <div class="container col-xs-4">
-  <img src="/assets/<%=@politician.bioguide_id%>.jpg" class="img-responsive"/>
-  Party: <%= @politician.party %><br>
+<!--   Party: <%= @politician.party %><br>
   State: <%= @politician.state %><br>
-  District: <%= @politician.district %><br>
+  District: <%= @politician.district %><br> -->
   <a href="<%= @politician.website %>">Go to your reps website</a><br>
   <a href="https://www.twitter.com/<%= @politician.twitter_handle %>">Follow your rep on twitter</a>
 </div>
@@ -16,47 +104,53 @@
   <% @politician.twitter_handle = 'USGovNews' %>
 <% end %>
 
+<div id = "recent" class = "pad">
+  <div class="container politician_id" id = "<%= @politician.id %>">
+    <h4>Recent NYTimes Headlines!</h4>
+    <div id = "articles">
+      
+    </div>
+  </div>
+</div>
 
-<div class="container col-xs-4 politician_id" id = "<%= @politician.id %>">
-  <h4>Recent NYTimes Headlines!</h4>
-  <ul id = "articles">
+<div id = "campaign" class = "pad">
+  <div id="contributions">
+    <h4>Contributions Summary</h4>
+    <table style="display: inline-block;">
+      <th>Organization</th>
+      <th>Amount ($)</th>
+        <% @indiv_contributors.each do |indiv_contributor| %>
+          <tr>
+            <td><%= indiv_contributor.organization_name %></td>
+            <td><%= indiv_contributor.total %></td>
+          </tr>
+        <% end %>
+    </table>
+
+    <table style="float: left;">
+      <th>Industry</th>
+      <th>Amount ($)</th>
+        <% @indus_contributors.each do |indus_contributor| %>
+          <tr>
+            <td><%= indus_contributor.industry_name %></td>
+            <td><%= indus_contributor.total %></td>
+          </tr>
+        <% end %>
+    </table>
     
+  </div>
+</div>
+
+<div id = "twitter" class = "pad">
+<br>
+<br>
+<h4>Twitter Mentions</h4>
+  <ul>
+  <% @get_mentions.each do |each_tweet| %>
+    <li>
+      <%= each_tweet%>
+    </li>
+  <% end %>
   </ul>
-</div>
-
-<div id="contributions">
-  <h4>Contributions Summary</h4>
-  <table>
-    <th>Organization</th>
-    <th>Amount ($)</th>
-      <% @indiv_contributors.each do |indiv_contributor| %>
-        <tr>
-          <td><%= indiv_contributor.organization_name %></td>
-          <td><%= indiv_contributor.total %></td>
-        </tr>
-      <% end %>
-  </table>
-
-  <table>
-    <th>Industry</th>
-    <th>Amount ($)</th>
-      <% @indus_contributors.each do |indus_contributor| %>
-        <tr>
-          <td><%= indus_contributor.industry_name %></td>
-          <td><%= indus_contributor.total %></td>
-        </tr>
-      <% end %>
-  </table>
-  
-</div>
-
-<div class="col-xs-6">
-<ul>
-<% @get_mentions.each do |each_tweet| %>
-  <li>
-    <%= each_tweet%>
-  </li>
-<% end %>
-</ul>
 </div>
 

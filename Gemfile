@@ -27,6 +27,8 @@ gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
 gem 'dotenv-rails'
 gem 'twitter'
+gem 'less-rails-bootstrap', '~> 3.0'
+gem "font-awesome-rails"
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
