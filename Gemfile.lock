@@ -58,7 +58,6 @@ GEM
       execjs
     coffee-script-source (1.9.1.1)
     columnize (0.9.0)
-    commonjs (0.2.7)
     debug_inspector (0.0.2)
     dotenv (2.0.1)
     dotenv-rails (2.0.1)
@@ -84,15 +83,6 @@ GEM
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
     json (1.8.2)
-    less (2.6.0)
-      commonjs (~> 0.2.7)
-    less-rails (2.7.0)
-      actionpack (>= 4.0)
-      less (~> 2.6.0)
-      sprockets (> 2, < 4)
-      tilt
-    less-rails-bootstrap (3.3.4.0)
-      less-rails (>= 2.6, <= 2.8)
     loofah (2.0.2)
       nokogiri (>= 1.5.9)
     mail (2.6.3)
@@ -202,7 +192,6 @@ DEPENDENCIES
   font-awesome-rails
   jbuilder (~> 2.0)
   jquery-rails
-  less-rails-bootstrap (~> 3.0)
   pg
   pry-rails
   rails (= 4.2.1)
