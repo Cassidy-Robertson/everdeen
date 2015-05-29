@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   get "/" => 'application#homeindex'
 
   get "/findyourreps" => 'politicians#findyourreps'
+
+  get "/index_classic" => 'application#index_classic'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

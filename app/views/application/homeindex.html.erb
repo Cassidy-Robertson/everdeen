@@ -28,9 +28,11 @@
     <div class="jumbotron">
       <h1 class="cover-heading">Politics are cool.</h1>
       <p class="lead">Find your representatives.</p>
-      <p class="lead">
-        <a href="#" class="btn btn-lg btn-default" id="geo-politician">Go</a>
-      </p>
+
+      <a href="#" class="btn btn-xl btn-primary">
+        <span class="oi oi-arrow-right" title="Find out more" aria-hidden="true" id="geo-politician"></span>
+        <span>Go</span>
+      </a>
     </div>
   </div>
 
@@ -39,7 +41,7 @@
     <h1></h1>
 
     <video autoplay muted loop poster="http://i.ytimg.com/vi/pv1O41akdeI/maxresdefault.jpg" id="bgvid">
-      <source src="https://dl.dropboxusercontent.com/u/110013595/LandingPage.mp4" type="video/mp4">
+      <source src=<%= @video %> type="video/mp4">
     </video>
 
   </body>
