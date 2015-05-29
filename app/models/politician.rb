@@ -5,9 +5,10 @@ class Politician < ActiveRecord::Base
 
   def get_mentions(politician_name)
     # binding.pry
-    results = twitter_client.search(politician_name,count:10)
+    results = twitter_client.search(politician_name, {count:10,result_type:"popular"})
     tweets = []
     results.attrs[:statuses].each_with_index do |tweet,i|
+      
       tweets << tweet[:text]
       break if i == 10
     end
