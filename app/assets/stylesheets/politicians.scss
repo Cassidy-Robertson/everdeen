@@ -33,6 +33,11 @@ video#bgvid {
   background-size: cover;
 }
 
+html body#application.homeindex.container {
+  margin: 0px 0px;
+  padding: 0px 0px;
+}
+
 
 /*
  * Globals
@@ -63,12 +68,11 @@ a:hover {
 html,
 body {
   height: 0%;
-  background-color: #333;
+  background-color: #e8e8e8;
 }
 body {
   color: #fff;
   text-align: center;
-  text-shadow: 0 1px 3px rgba(0,0,0,.5);
 }
 
 /* Extra markup and styles for table-esque vertical and horizontal centering */
@@ -96,11 +100,20 @@ body {
   width: 100%;
 }
 
-.jumbotron {
+#application .jumbotron {
+  text-align: center;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  color: #fff;
   background: rgba(132, 132, 132, 0.5);
+  background-color: rgba(132, 132, 132, 0.5);
+  width: 50%;
+  margin-left: 25%;
+  border-radius: 1%;
 }
 
-
+div.jumbotron h1 {
+  font-family: 'Oswald', sans-serif;
+}
 
 
 

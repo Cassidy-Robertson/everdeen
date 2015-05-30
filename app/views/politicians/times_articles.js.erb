@@ -1,4 +1,5 @@
+$('#articles img').hide();
+
 <% @articles.each do |article| %>
-debugger;
-$('#articles').append("<li> <%= j link_to article.headline, article.url %> </li>");
+$('#articles').append("<p> <%= j link_to article.headline, article.url %> </p>");
 <% end %>

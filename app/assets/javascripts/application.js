@@ -14,8 +14,9 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require 'welcome.js'
-//= require 'bootstrap.js'
-//= require 'bootstrap.min.js'
-//= require 'npm.js'
 //= require bootstrap-sprockets
+//= require wolfram/bootstrap/bootstrap.min.js
+//= require_tree ../../../vendor/assets/javascripts/wolfram/plugins
+//= require wolfram/custom.js
+//= require wolfram/custom_classic.js
 //= require_tree .
