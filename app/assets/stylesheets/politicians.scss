@@ -33,6 +33,11 @@ video#bgvid {
   background-size: cover;
 }
 
+html body#application.homeindex.container {
+    margin: 0px 0px;
+    padding: 0px 0px;
+}
+
 
 /*
  * Globals
@@ -95,7 +100,7 @@ body {
   width: 100%;
 }
 
-div.jumbotron {
+#application .jumbotron {
   text-align: center;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
   color: #fff;
@@ -104,6 +109,8 @@ div.jumbotron {
   width: 50%;
   margin-left: 25%;
   border-radius: 1%;
+  padding-left: 0px;
+  padding-right: 0px;
 }
 
 div.jumbotron h1 {
