@@ -1,3 +1,5 @@
+$('#articles img').hide();
+
 <% @articles.each do |article| %>
 $('#articles').append("<p> <%= j link_to article.headline, article.url %> </p>");
 <% end %>
