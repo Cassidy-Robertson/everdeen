@@ -13,7 +13,7 @@ Last change:    30/04/2015
  * Make navbar active 
  */
 
-$(document).on("page:change", function() {
+$(document).ready(function(){
   $("body").waypoint(function() {
     $(".navbar").toggleClass("navbar__initial");
     return false;
@@ -33,7 +33,7 @@ $("body").waypoint(function() {
  * Smooth scroll to anchor
  */
 
-$(document).on("page:change", function() {
+$(document).ready(function(){
   $('a[href*=#]:not([href=#])').click(function() {
     if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
       var target = $(this.hash);
