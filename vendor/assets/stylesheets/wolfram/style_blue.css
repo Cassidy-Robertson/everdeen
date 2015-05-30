@@ -1090,7 +1090,7 @@ body {
   font-family: 'PT Sans', sans-serif;
   font-size: 14px;
   line-height: 1.42857143;
-  color: white;
+/*  color: white;*/
   background-color: #ffffff;
 }
 input,
@@ -6700,6 +6700,9 @@ button.close {
     padding-top: 20px;
     background: transparent !important;
   }
+  .navbar__initial.navbar-default .navbar-nav > li > a {
+    color: #000;
+  }
 }
 /**
  * Navbar links and brand name
@@ -7317,7 +7320,7 @@ body.classic footer .social__item:focus {
  * Base structure
  */
 body {
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.18);
+/*  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.18);*/
   /* Preloading images for Backstretch plugin */
 }
 body::after {

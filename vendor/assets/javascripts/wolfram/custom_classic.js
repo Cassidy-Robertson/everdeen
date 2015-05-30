@@ -13,10 +13,12 @@ Last change:    30/04/2015
  * Make navbar active 
  */
 
-$("body").waypoint(function() {
+$(document).on("page:change", function() {
+  $("body").waypoint(function() {
     $(".navbar").toggleClass("navbar__initial");
     return false;
-}, { offset: "-20px" });
+  }, { offset: "-20px" });
+});
 
 /**
  * Change sidebar link color
