@@ -51,12 +51,15 @@
 </div>
 
 <div class="col-xs-6">
-<ul>
-<% @get_mentions.each do |each_tweet| %>
-  <li>
-    <%= each_tweet%>
-  </li>
-<% end %>
-</ul>
+  <ul>
+  <% @get_mentions.each do |tweet| %>
+    <li>
+      <%= tweet[:text] %>
+      <% if tweet[:media_url] %>
+        <%= image_tag tweet[:media_url] %>
+      <% end %>
+    </li>
+  <% end %>
+  </ul>
 </div>
 
