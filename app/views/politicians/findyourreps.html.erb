@@ -1,5 +1,5 @@
 <div class="row pad">
-  <h1 class="heading">Here are your elected representatives!</h1>
+  <h1 class="heading findyourreps">Here are your elected representatives!</h1>
   <p class="heading__sub"></p>
 </div>
 
@@ -7,6 +7,18 @@
 <div class="jumbotron">
   <div class="row">
     <%= render @politicians %>
+  </div>
+</div>
+
+<div class="jumbotron">
+  <div class="row">
+  <h2 class="findyourreps">Interested in other places?</h2>
+  <br>
+    <%#= label_tag :zipcode %>
+    <%= text_field_tag :zipcode, "" ,placeholder: "Enter Zipcode", class: "form-inline" %>
+    <br>
+    <br>
+    <%= submit_tag :Search, class: "search-button btn btn-l btn-primary" %>
   </div>
 </div>
 
