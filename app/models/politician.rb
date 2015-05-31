@@ -5,13 +5,14 @@ class Politician < ActiveRecord::Base
 
   def get_mentions(politician_name)
     # binding.pry
-    results = twitter_client.search(politician_name, {result_type:"mixed", count:100})
-    binding.pry
+    results = twitter_client.search(politician_name, {result_type:"popular", count:100})
     tweets = []
     image_counter = 0
     results.attrs[:statuses].each_with_index do |tweet,i|
+      # binding.pry
       tweet_hash = {}
       tweet_hash[:text] = tweet[:text]
+      tweet_hash[:screen_name] = tweet[:user][:screen_name]
       if tweet[:entities][:media]
         tweet_hash[:media_url] = tweet[:entities][:media][0][:media_url]
         image_counter += 1
@@ -72,11 +73,11 @@ class Politician < ActiveRecord::Base
 
     uri = URI(open_secrets_base_uri+method+"&cid="+self.crpid+"&cycle=#{year}&output=json&apikey="+api_key)
     result = Net::HTTP.get(uri)
-
-    JSON.load(result)["response"]["contributors"]["contributor"].each do |contributor_hash|
-      IndivContributor.create(organization_name: contributor_hash["@attributes"]["org_name"], total: contributor_hash["@attributes"]["total"].to_i, pacs: contributor_hash["@attributes"]["pacs"].to_i, indivs: contributor_hash["@attributes"]["indivs"].to_i, year: year, politician_id: self.id)
-    end
-    
+    if result != "Resource not found"
+      JSON.load(result)["response"]["contributors"]["contributor"].each do |contributor_hash|
+        IndivContributor.create(organization_name: contributor_hash["@attributes"]["org_name"], total: contributor_hash["@attributes"]["total"].to_i, pacs: contributor_hash["@attributes"]["pacs"].to_i, indivs: contributor_hash["@attributes"]["indivs"].to_i, year: year, politician_id: self.id)
+      end
+    end    
     IndivContributor.where(politician_id: self.id)
   end
 
@@ -86,9 +87,10 @@ class Politician < ActiveRecord::Base
 
     uri = URI(open_secrets_base_uri+method+"&cid="+self.crpid+"&cycle=#{year}&output=json&apikey="+api_key)
     result = Net::HTTP.get(uri)
-
-    JSON.load(result)["response"]["industries"]["industry"].each do |contributor_hash|
-      IndusContributor.create(industry_name: contributor_hash["@attributes"]["industry_name"], total: contributor_hash["@attributes"]["total"].to_i, pacs: contributor_hash["@attributes"]["pacs"].to_i, indivs: contributor_hash["@attributes"]["indivs"].to_i, year: year, politician_id: self.id)
+    if result != "Resource not found"
+      JSON.load(result)["response"]["industries"]["industry"].each do |contributor_hash|
+        IndusContributor.create(industry_name: contributor_hash["@attributes"]["industry_name"], total: contributor_hash["@attributes"]["total"].to_i, pacs: contributor_hash["@attributes"]["pacs"].to_i, indivs: contributor_hash["@attributes"]["indivs"].to_i, year: year, politician_id: self.id)
+      end
     end
     
     IndusContributor.where(politician_id: self.id)

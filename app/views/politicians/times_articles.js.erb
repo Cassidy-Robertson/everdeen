@@ -1,5 +1,5 @@
 $('#articles img').hide();
 
 <% @articles.each do |article| %>
-$('#articles').append("<p> <%= j link_to article.headline, article.url %> </p>");
+$('#articles').append("<div id='indiv-article' class='col-xs-4'> <%= j link_to article.headline, article.url, class: @politician.party %> </div>");
 <% end %>

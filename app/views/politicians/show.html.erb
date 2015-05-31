@@ -13,10 +13,10 @@
     </div>
     <div class="navbar-collapse collapse">
       <ul class="fullpage__nav nav navbar-nav navbar-right">
-        <li><a href="#welcome">Welcome</a></li>
-        <li><a href="#recent"> Recent Articles</a></li>
-        <li><a href="#campaign">Campaign Contributions</a></li>
-        <li><a href="#twitter">Twitter</a></li>
+        <li><a href="#welcome" class="<%= @politician.party %>">About</a></li>
+        <li><a href="#recent" class="<%= @politician.party %>"> Recent Articles</a></li>
+        <li><a href="#campaign" class="<%= @politician.party %>">Campaign Contributions</a></li>
+        <li><a href="#twitter" class="<%= @politician.party %>">Twitter</a></li>
       </ul>
     </div><!--/.nav-collapse -->
   </div>
@@ -36,7 +36,7 @@
           <div class = "pad">
           <img src="/assets/<%=@politician.bioguide_id%>.jpg" class="img-responsive col-xs-4 offset-4"/>
           <h1 class="heading heading_lg">
-            <%= @politician.title %> <span class="text-primary"><%= @politician.first_name%> <%= @politician.last_name%></span>
+            <%= @politician.title %> <span class="text-primary-<%=@politician.party %>"><%= @politician.first_name%> <%= @politician.last_name%></span>
           </h1>
 
           <!-- Sub heading -->
@@ -52,18 +52,10 @@
   </div> <!-- / .classic-welcome__inner -->
 </div> <!-- / .welcome_classic -->
 
-<!-- <h1>
-<%= @politician.title %>
-<%= @politician.first_name%> <%= @politician.last_name%>
-</h1> -->
-
 
 <div class="container col-xs-4">
-<!--   Party: <%= @politician.party %><br>
-  State: <%= @politician.state %><br>
-  District: <%= @politician.district %><br> -->
-  <a href="<%= @politician.website %>">Go to your reps website</a><br>
-  <a href="https://www.twitter.com/<%= @politician.twitter_handle %>">Follow your rep on twitter</a>
+  <a href="<%= @politician.website %>" class="<%=@politician.party %>">Go to your reps website</a><br>
+  <a href="https://www.twitter.com/<%= @politician.twitter_handle %>" class="<%=@politician.party %>">Follow your rep on twitter</a>
 </div>
 
 <% if (@politician.twitter_handle == nil || @politician.twitter_handle == "") %>
@@ -72,8 +64,8 @@
 
 <div id = "recent" class = "pad">
   <div class="container politician_id" id = "<%= @politician.id %>">
-    <h4>Recent NYTimes Headlines!</h4>
-    <div id = "articles">
+    <h2>Recent NYTimes Headlines!</h2>
+    <div id = "articles" class="nytimes">
       <img src="/assets/loading.gif">
     </div>
   </div>
@@ -81,49 +73,30 @@
 
 <div id = "campaign" class = "pad">
   <div id="contributions">
-    <h4>Contributions Summary</h4>
-    <table style="display: inline-block;">
-      <th>Organization</th>
-      <th>Amount ($)</th>
-        <% @indiv_contributors.each do |indiv_contributor| %>
-          <tr>
-            <td><%= indiv_contributor.organization_name %></td>
-            <td><%= indiv_contributor.total %></td>
-          </tr>
-        <% end %>
-    </table>
-
-    <table style="float: left;">
-      <th>Industry</th>
-      <th>Amount ($)</th>
-        <% @indus_contributors.each do |indus_contributor| %>
-          <tr>
-            <td><%= indus_contributor.industry_name %></td>
-            <td><%= indus_contributor.total %></td>
-          </tr>
-        <% end %>
-    </table>
-    
+    <h2>Campaign Contributions</h2>
+    <br>
+    <h4>by Organization for 2014</h4>
+    <%= pie_chart @indiv_contributors_data %>
+    <br>
+    <h4>by Industry for 2014</h4>
+    <%= pie_chart @indus_contributors_data %>
   </div>
 </div>
 
-<div class="col-xs-6">
-  <ul>
-  <% @get_mentions.each do |tweet| %>
-    <li>
-      <%= tweet[:text] %>
-      <% if tweet[:media_url] %>
-        <%= image_tag tweet[:media_url] %>
-      <% end %>
+ 
 <div id = "twitter" class = "pad">
 <br>
 <br>
-<h4>Twitter Mentions</h4>
+<h2>Twitter Mentions</h2>
   <ul>
-  <% @get_mentions.each do |each_tweet| %>
-    <li>
-      <%= each_tweet%>
-    </li>
+  <% @get_mentions.each do |tweet| %>
+    <div id="tweet" class="col-xs-4">
+      <%= tweet[:screen_name] %> says:
+      <%= tweet[:text] %>
+      <% if tweet[:media_url] %>
+        <%= image_tag tweet[:media_url], class: "img-responsive" %>
+      <% end %>
+    </div>
   <% end %>
   </ul>
 </div>

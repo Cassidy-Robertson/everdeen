@@ -1,7 +1,7 @@
 // Place all the styles related to the politicians controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-/* body#application {
+/*= body#application {
     background-image: url("http://i.imgur.com/fXS3uLo.gif");
     background-size: 100% auto;
 }
@@ -17,6 +17,33 @@ html, body, .container {
     display: table-cell;
     vertical-align: middle;
 } */
+
+body#application {
+    background-image: url("/assets/flag.gif");
+    background-size: 100% auto;
+}
+
+/*#D {
+  background-color: #001489;
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-color: #FFF;
+}*/
+
+#articles.nytimes {
+  font-size: 30px;
+}
+
+#tweet {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+#indiv-article {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
 
 video#bgvid {
   position: fixed;
@@ -68,7 +95,7 @@ a:hover {
 html,
 body {
   height: 0%;
-  background-color: #e8e8e8;
+  background-color: #FFF;
 }
 body {
   color: #fff;

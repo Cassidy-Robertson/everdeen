@@ -8,15 +8,25 @@ class PoliticiansController < ApplicationController
     @politician = Politician.find(params[:id])
 
     if @politician.indiv_contributors.empty?
-      @indiv_contributors = @politician.get_top_indiv_contributors("candContrib",2014)
+      indiv_contributors = @politician.get_top_indiv_contributors("candContrib",2014)
     else
-      @indiv_contributors = @politician.indiv_contributors
+      indiv_contributors = @politician.indiv_contributors
+    end
+
+    @indiv_contributors_data = {}
+    indiv_contributors.each do |indiv_contributor|
+      @indiv_contributors_data[indiv_contributor.organization_name.to_sym] = indiv_contributor.total
     end
 
     if @politician.indus_contributors.empty?
-      @indus_contributors = @politician.get_top_indus_contributors("candIndustry",2014)
+      indus_contributors = @politician.get_top_indus_contributors("candIndustry",2014)
     else
-      @indus_contributors = @politician.indus_contributors
+      indus_contributors = @politician.indus_contributors
+    end
+
+    @indus_contributors_data = {}
+    indus_contributors.each do |indus_contributor|
+      @indus_contributors_data[indus_contributor.industry_name.to_sym] = indus_contributor.total
     end
 
     politician_name = @politician.twitter_handle

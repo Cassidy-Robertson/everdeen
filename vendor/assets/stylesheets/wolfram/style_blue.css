@@ -1102,12 +1102,17 @@ textarea {
   line-height: inherit;
 }
 a {
-  color: #4dbce9;
+  color: #aaa;
   text-decoration: none;
 }
-a:hover,
-a:focus {
-  color: #4dbce9;
+a.D:hover,
+a.D:focus {
+  color: #00f;
+  text-decoration: underline;
+}
+a.R:hover,
+a.R:focus {
+  color: #f00;
   text-decoration: underline;
 }
 a:focus {
@@ -1342,11 +1347,15 @@ mark,
 .text-muted {
   color: #777777;
 }
-.text-primary {
-  color: #4dbce9;
+.text-primary-R {
+  color: #F00;
 }
+.text-primary-D {
+  color: #00F;
+}
+
 a.text-primary:hover {
-  color: #20abe3;
+  color: #f00;
 }
 .text-success {
   color: #3c763d;
@@ -4404,9 +4413,14 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .navbar-default .navbar-nav > li > a {
   color: white;
 }
-.navbar-default .navbar-nav > li > a:hover,
-.navbar-default .navbar-nav > li > a:focus {
-  color: #4dbce9;
+.navbar-default .navbar-nav > li > a.D:hover,
+.navbar-default .navbar-nav > li > a.D:focus {
+  color: #00f;
+  background-color: transparent;
+}
+.navbar-default .navbar-nav > li > a.R:hover,
+.navbar-default .navbar-nav > li > a.R:focus {
+  color: #f00;
   background-color: transparent;
 }
 .navbar-default .navbar-nav > .active > a,
@@ -6737,11 +6751,19 @@ button.close {
     right: 51%;
     bottom: 0;
     height: 0;
-    border-bottom: 3px solid #4dbce9;
     -webkit-transition: all 0.3s;
     -o-transition: all 0.3s;
     transition: all 0.3s;
   }
+
+.navbar-nav > li > a.D::after {
+      border-bottom: 3px solid #00f;
+  }
+
+  .navbar-nav > li > a.R::after {
+      border-bottom: 3px solid #f00;
+  }
+
   .navbar-nav > li > a:hover::after,
   .navbar-nav > li > a:focus::after {
     left: 0;
@@ -6761,7 +6783,7 @@ button.close {
 }
 .navbar-toggle:hover .icon-bar,
 .navbar-toggle:focus .icon-bar {
-  background: #4dbce9;
+  background: #00f;
 }
 /* -------------------- *\
     #SIDEBAR
