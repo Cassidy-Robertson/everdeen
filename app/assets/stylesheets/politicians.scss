@@ -143,6 +143,18 @@ div.jumbotron h1 {
   font-family: 'Oswald', sans-serif;
 }
 
+.container .jumbotron, .container-fluid .jumbotron {
+  background-color: rgba(132, 132, 132, 0.5);
+}
+
+.row h4 {
+  color: #fff
+}
+
+.row h1 {
+  color: #fff
+}
+
 
 
 /*
