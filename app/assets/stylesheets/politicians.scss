@@ -37,6 +37,19 @@ img.resize {
   padding-top: 10px;
 }
 
+svg {
+    padding-top: 12px;
+    fill: #fff;
+}
+
+svg.R:hover {
+    fill: #F00;
+}
+
+svg.D:hover {
+    fill: #00F;
+}
+
 #articles.nytimes {
   font-size: 30px;
 }

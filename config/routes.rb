@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :keywords, only: [:index]
-  resources :politicians
+  # resources :politicians
   resources :politicians, only: [:show] do
     get "/times_articles" => 'politicians#times_articles'
   end

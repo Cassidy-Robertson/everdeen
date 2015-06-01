@@ -15,10 +15,14 @@ Last change:    30/04/2015
 
 $(document).on("page:change", function(){
   if ($("#politicians.show").length > 0) {
-    $("body").waypoint(function() {
-      $(".navbar").toggleClass("navbar__initial");
-      return false;
-    }, { offset: "-20px" });
+    $(window).scroll(function() {
+    if ($(this).scrollTop() > 20){  
+        $('.navbar').removeClass("navbar__initial");
+      }
+      else{
+        $('.navbar').addClass("navbar__initial");
+      }
+    });
 
   $('a[href*=#]:not([href=#])').click(function() {
     if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {

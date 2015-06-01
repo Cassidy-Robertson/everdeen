@@ -6717,6 +6717,10 @@ button.close {
   .navbar__initial.navbar-default .navbar-nav > li > a {
     color: #000;
   }
+
+  .navbar__initial svg {
+    fill: #000;
+  }
 }
 /**
  * Navbar links and brand name
