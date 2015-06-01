@@ -67,7 +67,7 @@
 
 <div id = "recent" class = "pad">
   <div class="container politician_id" id = "<%= @politician.id %>">
-    <h2>Recent NYTimes Headlines!</h2>
+    <h2 class="profile-section">Recent NYTimes Headlines!</h2>
     <div id = "articles" class="nytimes">
       <img src="/assets/loading.gif">
     </div>
@@ -76,7 +76,7 @@
 
 <div id = "campaign" class = "pad">
   <div id="contributions">
-    <h2>Campaign Contributions</h2>
+    <h2 class="profile-section">Campaign Contributions</h2>
     <br>
     <h4>by Organization for 2014</h4>
     <%= pie_chart @indiv_contributors_data %>
@@ -90,7 +90,7 @@
 <div id = "twitter" class = "pad">
 <br>
 <br>
-<h2>Twitter Mentions</h2>
+<h2 class="profile-section">Twitter Mentions</h2>
   <ul>
   <% @get_mentions.each do |tweet| %>
     <div id="tweet" class="col-xs-4">
