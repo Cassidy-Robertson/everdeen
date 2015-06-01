@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150528193629) do
+ActiveRecord::Schema.define(version: 20150531230113) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,6 +82,17 @@ ActiveRecord::Schema.define(version: 20150528193629) do
     t.string   "crpid"
   end
 
+  create_table "ratings", force: :cascade do |t|
+    t.integer  "approvalcount"
+    t.integer  "disapprovalcount"
+    t.datetime "date"
+    t.integer  "politician_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "ratings", ["politician_id"], name: "index_ratings_on_politician_id", using: :btree
+
   create_table "user_keywords", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "keyword_id"
@@ -102,6 +113,7 @@ ActiveRecord::Schema.define(version: 20150528193629) do
   add_foreign_key "indiv_contributors", "politicians"
   add_foreign_key "indus_contributors", "politicians"
   add_foreign_key "nytimes_articles", "politicians"
+  add_foreign_key "ratings", "politicians"
   add_foreign_key "user_keywords", "keywords"
   add_foreign_key "user_keywords", "users"
 end

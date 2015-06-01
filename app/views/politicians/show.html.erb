@@ -46,7 +46,9 @@
           <p class="heading__sub">
             Party: <%= @politician.party %><br>
             State: <%= @politician.state %><br>
-            District: <%= @politician.district %>
+            <% if @politician.title == "Rep" %>
+              District: <%= @politician.district %>
+            <% end %>
           </p>
           </div>
         </div>
@@ -66,6 +68,8 @@
 <% end %>
 
 <div id = "recent" class = "pad">
+<br>
+<br>
   <div class="container politician_id" id = "<%= @politician.id %>">
     <h2>Recent NYTimes Headlines!</h2>
     <div id = "articles" class="nytimes">
@@ -74,7 +78,10 @@
   </div>
 </div>
 
+
 <div id = "campaign" class = "pad">
+<br>
+<br>
   <div id="contributions">
     <h2>Campaign Contributions</h2>
     <br>
