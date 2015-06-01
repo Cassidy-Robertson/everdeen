@@ -99,14 +99,16 @@
 <br>
 <h2 class="profile-section">Twitter Mentions</h2>
   <ul>
-  <% @get_mentions.each do |tweet| %>
-    <div id="tweet" class="col-xs-4">
-      <%= tweet[:screen_name] %> says:
-      <%= tweet[:text] %>
-      <% if tweet[:media_url] %>
-        <%= image_tag tweet[:media_url], class: "img-responsive" %>
-      <% end %>
-    </div>
+  <% if @get_mentions %>
+    <% @get_mentions.each do |tweet| %>
+      <div id="tweet" class="col-xs-4">
+        <%= tweet[:screen_name] %> says:
+        <%= tweet[:text] %>
+        <% if tweet[:media_url] %>
+          <%= image_tag tweet[:media_url], class: "img-responsive" %>
+        <% end %>
+      </div>
+    <% end %>
   <% end %>
   </ul>
 </div>

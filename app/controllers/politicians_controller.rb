@@ -30,8 +30,9 @@ class PoliticiansController < ApplicationController
     end
 
     politician_name = @politician.twitter_handle
-    # @politician.get_mentions(politician_name)
-    @get_mentions = @politician.get_mentions(politician_name)
+    if politician_name
+      @get_mentions = @politician.get_mentions(politician_name)
+    end
   end
 
   def times_articles
