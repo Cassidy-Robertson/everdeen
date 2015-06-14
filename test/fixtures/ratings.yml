@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  approvalcount: 1
+  disapprovalcount: 1
+  date: 2015-05-31 19:01:13
+  politician_id: 
+
+two:
+  approvalcount: 1
+  disapprovalcount: 1
+  date: 2015-05-31 19:01:13
+  politician_id: 
